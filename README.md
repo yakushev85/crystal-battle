@@ -6,7 +6,7 @@ Simple puzzle game with adventuring on map style. The game contains over 27 oppo
 
 # Requirements
 
-Godot Engine v 4.4.1
+Godot Engine v 4.5
 
 # Export to HTML
 
