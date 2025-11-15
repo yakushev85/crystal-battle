@@ -144,6 +144,7 @@ func _on_GameTimer_timeout():
 			$PlayerSpellBox.clear_selection()
 			$PlayerSpellBox.is_selection_allowed = true
 			check_spells()
+			check_turn_items()
 			player_time = PLAYER_TIME_LIMIT
 			$PlayerTimer.start()
 	
@@ -347,6 +348,28 @@ func score_matrix_play():
 	
 	return scored_lines
 
+func check_turn_items():
+	if randi() % 100 > 20:
+		return
+		
+	print_debug("doing changing items")
+	
+	var turned_matrix_colors = []
+	
+	for mxi in range(N):
+		turned_matrix_colors.append([])
+		for myi in range(N):
+			turned_matrix_colors[mxi].append(0)
+	
+	for mxi in range(N):
+		for myi in range(N):
+			turned_matrix_colors[myi][N-1-mxi] = play_matrix[mxi][myi].get_type()
+	
+	for mxi in range(N):
+		for myi in range(N):
+			if play_matrix[mxi][myi].get_type() != turned_matrix_colors[mxi][myi]:
+				play_matrix[mxi][myi].change_type(turned_matrix_colors[mxi][myi])
+	
 
 func enemy_turn():
 	$EnemyAvatar.turn_on()
@@ -377,7 +400,7 @@ func enemy_turn():
 		random_lines(posible_point.mx, posible_point.my)
 	elif current_enemy_spell == "RegenSpace":
 		regen_space()
-	else	:
+	else:
 		remove_cell_m(posible_point.mx, posible_point.my)
 		do_player_damage(int(enemy_dps))
 		
