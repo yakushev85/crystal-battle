@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var down_speed = 600
 
 var type
+var f_type
 var go_down_y = -1
 
 func set_type(new_type):
@@ -16,6 +17,9 @@ func change_type(new_type):
 	$ChangeItemSprite.show()
 	$ChangeItemSprite.play()
 	
+func change_type_fade(fade_type):
+	f_type = fade_type
+	$AnimationPlayer.play("fade_in")
 
 func get_type():
 	return type
@@ -66,3 +70,10 @@ func _on_ChangeItemSprite_animation_finished():
 	$ChangeItemSprite.hide()
 	
 	$ItemSprite.show()
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "fade_in":
+		set_type(f_type)
+		$AnimationPlayer.play("fade_out")
+	

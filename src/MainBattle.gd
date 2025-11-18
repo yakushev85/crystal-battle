@@ -368,7 +368,7 @@ func check_turn_items():
 	for mxi in range(N):
 		for myi in range(N):
 			if play_matrix[mxi][myi].get_type() != turned_matrix_colors[mxi][myi]:
-				play_matrix[mxi][myi].change_type(turned_matrix_colors[mxi][myi])
+				play_matrix[mxi][myi].change_type_fade(turned_matrix_colors[mxi][myi])
 	
 
 func enemy_turn():

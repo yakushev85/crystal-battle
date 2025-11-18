@@ -1,5 +1,5 @@
 res://default_bus_layout.tres
 res://default_env.tres
-res://src/WorldMap.tscn
-res://src/MainBattle.gd
 res://src/objects/item.tscn
+res://src/objects/item.gd
+res://src/MainBattle.gd
